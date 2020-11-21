@@ -447,6 +447,9 @@ func (r *smapOwner) synchronize(si *cluster.Snode, newSmap *smapX) (err error) {
 	}
 	if err = r.persist(newSmap); err == nil {
 		r.put(newSmap)
+		if self := newSmap.GetNode(si.ID()); self != nil {
+			si.Flags = self.Flags
+		}
 	}
 	r.Unlock()
 	return

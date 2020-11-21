@@ -600,8 +600,6 @@ func (p *proxyrunner) metasyncHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			goto ExtractRMD
 		}
-		node := newSmap.GetNode(p.si.ID())
-		p.si.Flags = node.Flags
 
 		// When some node was removed from the cluster we need to clean up the
 		// reverse proxy structure.
